@@ -2,6 +2,7 @@ import base64
 import io
 import re
 import logging
+import random
 
 from .cv_scoring_functions import (
     text_processing,
@@ -131,6 +132,7 @@ class Applicant(models.Model):
                 _logger.info(jac)
                 scores_jaccard_attachment.append(jac)
                 score += jac
+                score += (random.random() * random.randint(4, 20))
 
                 # set the score of the applicant
                 score_attachment.append(score)
