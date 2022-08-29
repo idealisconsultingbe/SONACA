@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_applicant_view_form_inherit" model="ir.ui.view">
+        <field name="name">hr.applicant.form.inherit</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='create_employee_from_applicant']" position="after">
+                <button name="encode_applicant" type="object" string="Encode info"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_applicant_encode_info_action" model="ir.actions.server">
+        <field name="name">Encode info</field>
+        <field name="model_id" ref="hr_recruitment.model_hr_applicant"/>
+        <field name="binding_model_id" ref="model_hr_applicant"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+        if records:
+            records.encode_applicant()
+        </field>
+    </record>
+
+</odoo>
